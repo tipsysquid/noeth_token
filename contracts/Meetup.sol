@@ -6,10 +6,7 @@ or the general case that represents the group as a whole.
 For now, I will be implementing it thinking
 this represents a particular Meetup on a specific date.
 */
-
 contract Meetup {
-
-}
 
 //initialize variables
 address public organizer;
@@ -33,7 +30,7 @@ function getMemberCount() public returns (uint) {
 }
 
 function checkAttendence(address member) public returns (bool) {
-	return memberJoined[member]
+	return memberJoined[member];
 }
 
 //truffle recommends a kill function
@@ -43,3 +40,4 @@ function kill() {
 		suicide(organizer);
 }
 
+}
