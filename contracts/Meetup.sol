@@ -6,6 +6,7 @@ or the general case that represents the group as a whole.
 For now, I will be implementing it thinking
 this represents a particular Meetup on a specific date.
 */
+//pragma solidity ^0.4.18
 contract Meetup {
 
 //initialize variables
@@ -14,7 +15,7 @@ mapping (address => bool) public memberJoined;
 uint public memberCount;
 
 //constructor
-function Meetup() {
+function Meetup() public {
 	organizer = msg.sender;
 	memberCount = 0;
 }
@@ -25,11 +26,11 @@ function attend() public payable returns (bool) {
 	return true;
 }
 
-function getMemberCount() public returns (uint) {
+function getMemberCount() public view returns (uint) {
 	return memberCount;
 }
 
-function checkAttendence(address member) public returns (bool) {
+function checkAttendence(address member) public view returns (bool) {
 	return memberJoined[member];
 }
 
@@ -37,7 +38,7 @@ function checkAttendence(address member) public returns (bool) {
 //but this is not complete. TODO: return funds to organizer
 function kill() {
 	if (msg.sender == organizer)
-		suicide(organizer);
+		selfdestruct(organizer);
 }
 
 }
