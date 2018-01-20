@@ -7,7 +7,7 @@ For now, I will be implementing it thinking
 this represents a particular Meetup on a specific date.
 */
 //pragma solidity ^0.4.18
-contract Meetup {
+contract Meetup is ERC20Token {
 
   //initialize variables
   address public organizer;
@@ -41,4 +41,20 @@ contract Meetup {
       selfdestruct(organizer);
   }
 
+}
+
+contract ERC20Token
+{
+  // token name and symbol
+  string symbol;
+  string name;
+
+  //decimal places suggested by ethereum.org/token
+  uint8 public decimals = 18;
+  
+  //creates arrays of balances
+  mapping (address => uint256) public balences;
+  mapping (address => mapping (address => uint256)) public allowed;
+
+  uint256 totalSupply; 
 }
