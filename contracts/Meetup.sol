@@ -9,36 +9,36 @@ this represents a particular Meetup on a specific date.
 //pragma solidity ^0.4.18
 contract Meetup {
 
-//initialize variables
-address public organizer;
-mapping (address => bool) public memberJoined;
-uint public memberCount;
+  //initialize variables
+  address public organizer;
+  mapping (address => bool) public memberJoined;
+  uint public memberCount;
 
-//constructor
-function Meetup() public {
-	organizer = msg.sender;
-	memberCount = 0;
-}
+  //constructor
+  function Meetup() public {
+    organizer = msg.sender;
+    memberCount = 0;
+  }
 
-function attend() public payable returns (bool) {
-	memberJoined[msg.sender] = true;
-	memberCount++;
-	return true;
-}
+  function attend() public payable returns (bool) {
+    memberJoined[msg.sender] = true;
+    memberCount++;
+    return true;
+  }
 
-function getMemberCount() public view returns (uint) {
-	return memberCount;
-}
+  function getMemberCount() public view returns (uint) {
+    return memberCount;
+  }
 
-function checkAttendence(address member) public view returns (bool) {
-	return memberJoined[member];
+  function checkAttendence(address member) public view returns (bool) {
+    return memberJoined[member];
 }
 
 //truffle recommends a kill function
 //but this is not complete. TODO: return funds to organizer
-function kill() {
-	if (msg.sender == organizer)
-		selfdestruct(organizer);
-}
+  function kill() {
+    if (msg.sender == organizer)
+      selfdestruct(organizer);
+  }
 
 }
