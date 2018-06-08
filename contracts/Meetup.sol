@@ -53,8 +53,28 @@ contract ERC20Token
   uint8 public decimals = 18;
   
   //creates arrays of balances
-  mapping (address => uint256) public balences;
-  mapping (address => mapping (address => uint256)) public allowed;
+  mapping (address => uint256) public balancesOf;
+  mapping (address => mapping (address => uint256)) public allowance;
 
   uint256 totalSupply; 
+
+  //generates event on blockchain notifying clients
+  event Transfer(address indexed from, address indext to, uint256 value);
+
+  //notifies clients about amount burned 
+  event Burn(address indexed from, uint256 value);
+
+  /*Constructor
+    initialize contract with initial token supply
+  */
+  function ERC20Token(uint256 initialSupply, string tokenName, string tokenSymbol) public {
+    
+  //update total supply with decimal amount
+    totalSupply = initialSupply * 10 ** uinit256(decimals);
+  //give creator all initial tokens
+    balanceOf[msg.sender] = totalSupply;
+    name = tokenName;
+    symbol = tokenSymbol;
+
+  }
 }
